@@ -1,0 +1,23 @@
+{
+  "gmail_enabled": false,
+  "whatsapp_enabled": true,
+  "bank_enabled": true,
+  "file_drop_enabled": true,
+  "gmail_interval": 300,
+  "whatsapp_interval": 60,
+  "bank_interval": 600,
+  "watch_directories": [
+    "Watched_Files"
+  ],
+  "needs_action_dir": "Needs_Action",
+  "log_level": "INFO",
+  "twilio_account_sid": "YOUR_TWILIO_ACCOUNT_SID_HERE",
+  "twilio_auth_token": "YOUR_TWILIO_AUTH_TOKEN_HERE",
+  "whatsapp_number": "whatsapp:+1234567890",
+  "bank_apis": {},
+  "account_types": [
+    "checking",
+    "savings",
+    "credit"
+  ]
+}

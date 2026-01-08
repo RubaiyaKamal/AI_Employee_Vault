@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "vault-filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\Lap Zone\\Personal AI Employee\\AI_Employee_Vault"
+      ],
+      "env": {},
+      "description": "Access Personal AI Employee vault files for reading and writing operational data"
+    },
+    "browser-readonly": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-browser"
+      ],
+      "env": {
+        "HEADLESS": "true"
+      },
+      "description": "Browse web pages for information gathering (Bronze Tier - read-only)"
+    }
+  }
+}

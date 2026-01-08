@@ -1,0 +1,46 @@
+# Environment variables and secrets
+.env
+*.env
+credentials.json
+token.json
+watcher_config.json
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Obsidian
+.obsidian/workspace*
+.obsidian/cache
+
+# Logs with sensitive data
+Logs/*.json
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+~*
+
+# Backup files
+*.bak
+*.backup
