@@ -1,0 +1,45 @@
+{
+  "servers": {
+    "communication-mcp": {
+      "id": "communication-mcp",
+      "name": "Communication MCP Server",
+      "port": 3001,
+      "script": "./mcp_servers/communication_mcp_server.js",
+      "capabilities": ["email-send", "email-receive", "sms-send", "social-post", "notification-send"],
+      "healthCheckPath": "/health",
+      "enabled": true
+    },
+    "business-operations-mcp": {
+      "id": "business-operations-mcp",
+      "name": "Business Operations MCP Server",
+      "port": 3002,
+      "script": "./mcp_servers/business_operations_mcp_server.js",
+      "capabilities": ["financial-report", "audit-log", "document-gen", "compliance-check"],
+      "healthCheckPath": "/health",
+      "enabled": true
+    },
+    "personal-assistance-mcp": {
+      "id": "personal-assistance-mcp",
+      "name": "Personal Assistance MCP Server",
+      "port": 3003,
+      "script": "./mcp_servers/personal_assistance_mcp_server.js",
+      "capabilities": ["calendar-manage", "task-schedule", "reminder-set", "health-track"],
+      "healthCheckPath": "/health",
+      "enabled": true
+    },
+    "integration-mcp": {
+      "id": "integration-mcp",
+      "name": "Integration MCP Server",
+      "port": 3004,
+      "script": "./mcp_servers/integration_mcp_server.js",
+      "capabilities": ["data-sync", "event-correlate", "domain-bridge", "workflow-orchestrate"],
+      "healthCheckPath": "/health",
+      "enabled": true
+    }
+  },
+  "deployment": {
+    "mode": "production",
+    "startupTimeout": 30000,
+    "healthCheckInterval": 30000
+  }
+}

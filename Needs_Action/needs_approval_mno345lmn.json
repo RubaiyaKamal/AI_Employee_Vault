@@ -1,0 +1,24 @@
+{
+  "id": "mno345lmn",
+  "type": "whatsapp_response",
+  "description": "VIP client urgent support request requiring approval",
+  "priority": "high",
+  "deadline": "2026-01-12T11:30:00.000Z",
+  "created": "2026-01-12T10:30:00.000Z",
+  "source": "whatsapp_watcher",
+  "message_details": {
+    "sender": "+1234567890",
+    "sender_name": "Acme Corp - Technical Lead",
+    "timestamp": "2026-01-12T10:25:00.000Z",
+    "content": "Hi, we're experiencing complete system downtime since 6 AM EST. Critical production systems are down. Need immediate assistance.",
+    "urgency_keywords": [
+      "urgent",
+      "downtime",
+      "critical",
+      "immediate"
+    ],
+    "contact_history": 15,
+    "relationship_status": "vip_client"
+  },
+  "suggested_action": "Acknowledge urgently and assign senior support engineer"
+}

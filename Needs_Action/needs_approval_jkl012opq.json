@@ -1,0 +1,18 @@
+{
+  "id": "jkl012opq",
+  "type": "file_processing",
+  "description": "Sensitive document upload requiring approval",
+  "priority": "high",
+  "deadline": "2026-01-13T10:30:00.000Z",
+  "created": "2026-01-12T10:30:00.000Z",
+  "source": "filesystem_watcher",
+  "file_event": {
+    "operation": "created",
+    "path": "/data/confidential/salary_reviews_Q4_2025.xlsx",
+    "size": 2048576,
+    "extension": ".xlsx",
+    "classification": "confidential",
+    "sensitivity_level": "high"
+  },
+  "suggested_action": "Review document and approve for payroll processing"
+}

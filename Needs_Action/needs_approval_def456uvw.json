@@ -1,0 +1,24 @@
+{
+  "id": "def456uvw",
+  "type": "social_post",
+  "description": "LinkedIn company announcement post requiring approval",
+  "priority": "medium",
+  "deadline": "2026-01-13T10:30:00.000Z",
+  "created": "2026-01-12T10:30:00.000Z",
+  "source": "social_media_automation",
+  "platform": "linkedin",
+  "content": {
+    "text": "Exciting news! We've reached 1 million customers. Thank you to our amazing team and loyal customers for making this milestone possible.",
+    "hashtags": [
+      "#Milestone",
+      "#Achievement",
+      "#Teamwork",
+      "#CustomerFirst"
+    ],
+    "media": {
+      "url": "https://internal.company.com/images/milestone_graph.png",
+      "caption": "Growth trajectory reaching 1M customers"
+    }
+  },
+  "suggested_action": "Review and approve for LinkedIn posting"
+}

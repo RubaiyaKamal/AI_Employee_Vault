@@ -94,6 +94,16 @@ class WatcherManager:
             except Exception as e:
                 print(f"File drop watcher initialization failed: {e}")
 
+        if self.config.get('linkedin_enabled', False):
+            try:
+                from linkedin_watcher import LinkedInWatcher
+                self.watchers['linkedin'] = LinkedInWatcher()
+                print("[OK] LinkedIn watcher initialized")
+            except ImportError as e:
+                print(f"LinkedIn watcher not available: {e}")
+            except Exception as e:
+                print(f"LinkedIn watcher initialization failed: {e}")
+
     def run_gmail_watcher(self):
         """Run Gmail watcher in a separate thread"""
         if 'gmail' in self.watchers:
@@ -138,6 +148,18 @@ class WatcherManager:
             except Exception as e:
                 print(f"Error in File Drop watcher: {e}")
 
+    def run_linkedin_watcher(self):
+        """Run LinkedIn watcher in a separate thread"""
+        if 'linkedin' in self.watchers:
+            try:
+                interval = self.config.get('linkedin_interval', 3600)
+                self.watchers['linkedin'].run_once()  # Run once initially
+                while self.running:
+                    time.sleep(interval)
+                    self.watchers['linkedin'].run_once()
+            except Exception as e:
+                print(f"Error in LinkedIn watcher: {e}")
+
     def start_all_watchers(self):
         """Start all enabled watchers"""
         print("Initializing watchers...")
@@ -168,6 +190,12 @@ class WatcherManager:
             bank_thread.start()
             self.threads['bank'] = bank_thread
             print("[OK] Bank watcher started")
+
+        if 'linkedin' in self.watchers:
+            linkedin_thread = threading.Thread(target=self.run_linkedin_watcher, daemon=True)
+            linkedin_thread.start()
+            self.threads['linkedin'] = linkedin_thread
+            print("[OK] LinkedIn watcher started")
 
         # File drop watcher runs in main thread (it's event-based)
         if 'file_drop' in self.watchers:

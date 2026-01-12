@@ -1,0 +1,18 @@
+{
+  "id": "ghi789rst",
+  "type": "financial_transaction",
+  "description": "Vendor invoice requiring approval",
+  "priority": "high",
+  "deadline": "2026-01-13T10:30:00.000Z",
+  "created": "2026-01-12T10:30:00.000Z",
+  "source": "xero_integration",
+  "transaction_type": "invoice",
+  "vendor": "Cloud Services Inc.",
+  "amount": 15500,
+  "currency": "USD",
+  "invoice_number": "INV-2026-0156",
+  "due_date": "2026-02-11T10:30:00.000Z",
+  "department": "IT Infrastructure",
+  "purpose": "Annual cloud hosting services",
+  "suggested_action": "Review invoice details and approve for payment"
+}

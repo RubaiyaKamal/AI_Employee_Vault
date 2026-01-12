@@ -1,0 +1,20 @@
+{
+  "id": "abc123xyz",
+  "type": "email_response",
+  "description": "Important business email requiring response/approval",
+  "priority": "high",
+  "deadline": "2026-01-12T14:30:00.000Z",
+  "created": "2026-01-12T10:30:00.000Z",
+  "source": "gmail_watcher",
+  "email_details": {
+    "from": "client@bigcorp.com",
+    "subject": "URGENT: Contract Approval Required - $50,000 Marketing Deal",
+    "amount_involved": 50000,
+    "urgency_keywords": [
+      "URGENT",
+      "ASAP",
+      "IMMEDIATE"
+    ],
+    "suggested_action": "Approve contract terms and authorize payment"
+  }
+}

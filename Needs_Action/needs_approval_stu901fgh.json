@@ -1,0 +1,28 @@
+{
+  "id": "stu901fgh",
+  "type": "ceo_briefing_content",
+  "description": "CEO weekly briefing content requiring executive approval",
+  "priority": "high",
+  "deadline": "2026-01-13T10:30:00.000Z",
+  "created": "2026-01-12T17:00:00.000Z",
+  "source": "ceo_briefing_generator",
+  "briefing_details": {
+    "report_period": "2026-W02",
+    "report_type": "weekly_ceo_briefing",
+    "sensitive_sections": [
+      "Competitive Intelligence",
+      "Strategic Initiatives"
+    ],
+    "competitive_intel": {
+      "competitor": "TechRival Inc.",
+      "intelligence_source": "market_research",
+      "sensitivity_level": "confidential",
+      "content_summary": "Competitor planning major product launch in Q2 2026, potential market disruption"
+    },
+    "key_metrics_flagged": [
+      "Q1 revenue projection 5% below target",
+      "Customer churn rate increased 15% month-over-month"
+    ]
+  },
+  "suggested_action": "Review sensitive sections and approve briefing for distribution"
+}

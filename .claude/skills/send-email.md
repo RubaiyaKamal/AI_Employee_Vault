@@ -1,15 +1,18 @@
-# Send Email via SMTP
+# Send Email via MCP Server
 
 ## Title
-**Send Email via SMTP** - Secure Email Sending with Human-in-the-Loop Approval
+**Send Email via MCP Server** - Secure Email Sending with Human-in-the-Loop Approval
 
 ## Description
 
-This skill sends emails through SMTP using credentials from .env file after verifying human approval. It implements the complete Human-in-the-Loop workflow for external communication, ensuring all outgoing emails are reviewed and explicitly approved before sending.
+This skill sends emails through the Email MCP Server after verifying human approval. It implements the complete Human-in-the-Loop workflow for external communication, ensuring all outgoing emails are reviewed and explicitly approved before sending.
+
+**This fulfills the Silver Tier requirement**: "One working MCP server for external action (e.g., sending emails)"
 
 **Capability Level**: Silver Tier
-**Category**: External Communication
+**Category**: External Communication (MCP-based)
 **Risk Level**: High (External communication, requires approval)
+**MCP Server**: `@modelcontextprotocol/server-email`
 
 ## Instructions
 
@@ -146,50 +149,70 @@ def validate_parameters(params):
     return errors
 ```
 
-#### 4. Check SMTP Email Server Connection
+#### 4. Check Email MCP Server Connection
 
-**SMTP Server Requirements**:
-- Configuration: Valid Gmail credentials in .env file
-- Required variables: `EMAIL_USER` and `EMAIL_PASSWORD` (App Password)
+**Email MCP Server Requirements**:
+- MCP Server: `@modelcontextprotocol/server-email` (already connected)
+- Configuration: Valid Gmail credentials configured via MCP tools
+- Required: `EMAIL_USER` and `EMAIL_PASSWORD` (Gmail App Password)
 
 **Connection Check**:
-```bash
-# Verify credentials exist
-python -c "import os; print('EMAIL_USER exists:', bool(os.getenv('EMAIL_USER'))); print('EMAIL_PASSWORD exists:', bool(os.getenv('EMAIL_PASSWORD')))"
+Use the MCP tool to test connection:
+```javascript
+// Use mcp__email__test_email_connection tool
+mcp__email__test_email_connection({ testType: "smtp" })
 ```
 
-**If SMTP Not Available**:
-- Log error: "SMTP email server not configured properly"
+**Expected Response**:
+```
+✅ SMTP服务器连接测试成功！
+```
+
+**If MCP Email Server Not Available**:
+- Log error: "Email MCP server connection failed"
 - Mark plan as `status: blocked`
 - Keep file in `/Approved` for retry
-- Report to user: "Email sending blocked - SMTP credentials needed"
+- Report to user: "Email sending blocked - MCP server needs configuration"
 
-#### 5. Send Email via SMTP
+#### 5. Send Email via MCP Server
 
-**SMTP Call Structure**:
-```python
-result = send_email_via_smtp(
-    recipient="client@example.com",
-    cc="manager@mycompany.com",
-    subject="Project Status Update - Week 2",
-    body="<email content>",
-    attachments=["/path/to/file.pdf"],
-    priority="normal"
-)
+**MCP Tool Call**:
+Use the `mcp__email__send_email` tool:
+
+```javascript
+mcp__email__send_email({
+  to: ["client@example.com"],
+  cc: ["manager@mycompany.com"],
+  subject: "Project Status Update - Week 2",
+  text: "<email content>",
+  html: "<email content in HTML>",  // optional
+  attachments: [                      // optional
+    {
+      filename: "invoice.pdf",
+      path: "/path/to/file.pdf"
+    }
+  ]
+})
 ```
 
-**Expected SMTP Response**:
-```json
-{
-  "status": "success",
-  "message_id": "<unique-message-id@gmail.com>",
-  "sent_at": "2026-01-09T10:35:00Z",
-  "recipients": {
-    "to": ["client@example.com"],
-    "cc": ["manager@mycompany.com"]
-  }
-}
+**Expected MCP Response**:
 ```
+✅ 邮件发送成功！
+
+发送详情:
+- 收件人: client@example.com
+- 主题: Project Status Update - Week 2
+- 发送时间: 2026-01-10 10:35:00
+```
+
+**MCP Tool Parameters**:
+- `to`: Array of recipient email addresses (required)
+- `subject`: Email subject (required)
+- `text`: Plain text email body (required)
+- `html`: HTML email body (optional)
+- `cc`: Array of CC recipients (optional)
+- `bcc`: Array of BCC recipients (optional)
+- `attachments`: Array of attachment objects (optional)
 
 #### 6. Handle Send Results
 
@@ -667,18 +690,22 @@ Email was NOT sent due to validation errors.
 - `/bronze.process-inbox.md` - Creates email send requests
 - `/bronze.generate-plan.md` - Generates email plans requiring approval
 - `/silver.execute-approved.md` - Orchestrates execution including email sending
-- `/silver.review-approvals.md` - Helps review and approve email drafts
 
 ### Documentation
 - `Company_Handbook.md` - Email communication policies
 - `.specify/memory/constitution.md` - Principle II (HITL) and IV (Audit Logging)
-- `EMAIL_MCP_SETUP_GUIDE.md` - Email SMTP configuration
-- `README.md:128-135` - Approval requirements for emails
+- `SILVER_TIER_SETUP.md` - Email MCP server setup guide
+- `MCP_QUICK_REFERENCE.md` - MCP server usage reference
+- `README.md` - Approval requirements for emails
 
-### SMTP Server
-- **Configuration**: `.env` file with `EMAIL_USER` and `EMAIL_PASSWORD`
-- **Service**: Gmail SMTP (smtp.gmail.com:587)
-- **Authentication**: App Passwords (for Gmail accounts with 2FA)
+### Email MCP Server
+- **MCP Server**: `@modelcontextprotocol/server-email`
+- **Configuration Tools**:
+  - `mcp__email__setup_email_account` - Configure email account
+  - `mcp__email__configure_email_server` - Manual server configuration
+  - `mcp__email__test_email_connection` - Test SMTP/IMAP connection
+- **Service**: Supports Gmail, Outlook, Yahoo, QQ, 163, and others
+- **Authentication**: Gmail App Passwords (for accounts with 2FA)
 
 ### Code References
 - `send_email_smtp.py` - SMTP email sending implementation
@@ -711,9 +738,10 @@ Email was NOT sent due to validation errors.
 
 ---
 
-**Skill Version**: 1.0.0
-**Last Updated**: 2026-01-09
+**Skill Version**: 2.0.0
+**Last Updated**: 2026-01-10
 **Tier**: Silver
 **Author**: Personal AI Employee System
 **Status**: Production Ready
-**Requires**: MCP Email Server (`@modelcontextprotocol/server-email`)
+**Requires**: Email MCP Server (`@modelcontextprotocol/server-email`)
+**MCP Server Status**: ✅ Connected (IMAP working, SMTP needs Gmail App Password)

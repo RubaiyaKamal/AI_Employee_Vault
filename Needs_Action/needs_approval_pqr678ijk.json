@@ -1,0 +1,20 @@
+{
+  "id": "pqr678ijk",
+  "type": "audit_exception",
+  "description": "Unusual financial pattern detected in weekly audit",
+  "priority": "medium",
+  "deadline": "2026-01-19T10:30:00.000Z",
+  "created": "2026-01-12T09:00:00.000Z",
+  "source": "weekly_audit_system",
+  "exception_details": {
+    "audit_period": "2026-W02",
+    "detected_anomaly": "Marketing spend 300% above usual weekly average",
+    "affected_department": "Marketing",
+    "usual_spend": 5000,
+    "actual_spend": 20000,
+    "variance_percentage": 300,
+    "time_period": "2026-01-05T00:00:00.000Z to 2026-01-11T23:59:59.000Z",
+    "potential_risk_level": "medium"
+  },
+  "suggested_action": "Review marketing expenses and approve investigation"
+}
