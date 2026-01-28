@@ -1,0 +1,42 @@
+version: '3.8'
+
+# Platinum Tier - Simplified Test Deployment
+# Tests local agent functionality without full Docker complexity
+
+services:
+  # Local Agent - Test Mode
+  local-agent-test:
+    image: node:18-alpine
+    container_name: ai-employee-local-test
+    restart: unless-stopped
+    working_dir: /app
+    command: node commands/local-agent.js
+    environment:
+      - AGENT_ID=local
+      - AGENT_ROLE=executor
+      - NODE_ENV=production
+      - VAULT_PATH=/app
+      - HEALTH_CHECK_PORT=8081
+      - CHECK_INTERVAL=30000
+      - VAULT_SYNC_INTERVAL=300000
+      # Credentials from .env.local
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+      - LINKEDIN_CLIENT_ID=${LINKEDIN_CLIENT_ID}
+      - LINKEDIN_MEMBER_ID=${LINKEDIN_MEMBER_ID}
+    volumes:
+      - .:/app
+    ports:
+      - "8081:8081"
+    networks:
+      - ai-employee-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8081/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  ai-employee-network:
+    driver: bridge

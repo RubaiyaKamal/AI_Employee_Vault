@@ -44,3 +44,69 @@ Logs/*.json
 # Backup files
 *.bak
 *.backup
+
+# ============================================
+# PLATINUM TIER - ADDITIONAL SECURITY
+# ============================================
+
+# Local environment with full credentials (NEVER SYNC!)
+.env.local
+.env.production
+
+# Cloud environment (managed on cloud VM only)
+.env.cloud
+
+# OAuth tokens and sessions
+.linkedin_token.json
+*.token.json
+*.session.json
+
+# WhatsApp session (local only - contains authentication)
+whatsapp-session/
+.whatsapp-session/
+
+# SSH and deployment keys
+*.key
+*.pem
+*.ppk
+deploy-key
+deploy-key.pub
+
+# Payment gateway credentials
+payment-config.json
+stripe-*.json
+paypal-*.json
+
+# Node modules
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Docker volumes with sensitive data
+docker/*/data/
+
+# Large files
+*.pdf
+*.zip
+*.tar.gz
+*.mp4
+*.mov
+
+# Build artifacts
+dist/
+build/
+.next/
+
+# IDE files
+.vscode/
+.idea/
+*.code-workspace
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Safe templates (ALLOW these)
+!.env.cloud.template
+!.env.local.template
+!.env.example
